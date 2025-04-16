@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { LayoutGroup } from "framer-motion";
 import DraggableCard from "../components/DraggableCard";
-import TodosContent from "../components/TodosContent";
+import TodosContent from "../components/content/TodosContent";
+import RunningCompetition from "../components/content/RunningCompetition";
+import SpotifyContent from "../components/content/SpotifyContent";
+import ShouldDoContent from "../components/content/ShouldDoContent";
 import WeatherContent from "../components/WeatherContent";
 
 interface CardPosition {
@@ -20,88 +23,50 @@ interface DashboardCard {
 }
 
 const DashboardLayout: React.FC = () => {
-  // Define your dashboard cards
-  const [cards] = useState<DashboardCard[]>([
+  const cards: DashboardCard[] = [
     {
       id: "weather",
       title: "Weather",
-      content: <WeatherContent />, // You'll need to create this component
-      initialPosition: { x: 20, y: 20 },
-      width: "320px",
-      height: "auto",
+      content: <WeatherContent />,
+      width: "100%",
     },
     {
       id: "todos",
       title: "Today's Todos",
-      content: <TodosContent />, // You'll need to create this component
-      initialPosition: { x: 360, y: 20 },
-      width: "320px",
-      height: "auto",
+      content: <TodosContent />,
     },
-    // Add more cards as needed
-  ]);
-
-  const [positions, setPositions] = useState<CardPosition[]>([]);
-
-  // Load saved positions from localStorage
-  useEffect(() => {
-    const savedPositions = localStorage.getItem("card-positions");
-    if (savedPositions) {
-      setPositions(JSON.parse(savedPositions));
-    }
-  }, []);
-
-  // Save positions when they change
-  useEffect(() => {
-    if (positions.length > 0) {
-      localStorage.setItem("card-positions", JSON.stringify(positions));
-    }
-  }, [positions]);
-
-  const handleDragEnd = (
-    id: string,
-    info: { point: { x: number; y: number } }
-  ) => {
-    const newPositions = [...positions];
-    const index = newPositions.findIndex((p) => p.id === id);
-
-    if (index !== -1) {
-      newPositions[index] = { id, x: info.point.x, y: info.point.y };
-    } else {
-      newPositions.push({ id, x: info.point.x, y: info.point.y });
-    }
-
-    setPositions(newPositions);
-  };
-
-  const getPosition = (id: string) => {
-    const savedPosition = positions.find((p) => p.id === id);
-    const card = cards.find((c) => c.id === id);
-
-    if (savedPosition) {
-      return { x: savedPosition.x, y: savedPosition.y };
-    }
-
-    return card?.initialPosition || { x: 0, y: 0 };
-  };
+    {
+      id: "running-competition",
+      title: "Running Competition",
+      content: <RunningCompetition />,
+    },
+    {
+      id: "spotify",
+      title: "Spotify",
+      content: <SpotifyContent />,
+    },
+    {
+      id: "should-do",
+      title: "Should Do",
+      content: <ShouldDoContent />,
+    },
+  ];
 
   return (
     <LayoutGroup>
-      <div className='relative w-full h-[calc(100vh-64px)] overflow-auto p-4 bg-gray-100'>
-        {cards.map((card) => (
-          <DraggableCard
-            key={card.id}
-            id={card.id}
-            title={card.title}
-            initialPosition={getPosition(card.id)}
-            onDragEnd={handleDragEnd}
-            className={`${card.width ? `w-[${card.width}]` : "w-[320px]"} ${
-              card.height ? `h-[${card.height}]` : ""
-            }`}
-          >
-            {card.content}
-          </DraggableCard>
-        ))}
+      <div className='relative w-full h-[calc(100vh-64px)] overflow-auto px-4 py-6 bg-gray-100'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+          {cards.map((card) => (
+            <DraggableCard
+              key={card.id}
+              id={card.id}
+              title={card.title}
+              className='bg-white rounded-xl shadow-md p-4'
+            >
+              {card.content}
+            </DraggableCard>
+          ))}
+        </div>
       </div>
     </LayoutGroup>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
+import SideBar from "./components/SideBar";
 import DashboardLayout from "./pages/Dashboard";
 
 const App: React.FC = () => {
@@ -8,8 +8,8 @@ const App: React.FC = () => {
     <div className='flex flex-col h-screen'>
       <Navbar />
       <div className='flex flex-1'>
-        <Sidebar />
-        <main className='flex-1 mt-16 ml-[280px] bg-gray-100'>
+        <SideBar />
+        <main className='flex-1 ml-[280px] bg-gray-100'>
           <DashboardLayout />
         </main>
       </div>
