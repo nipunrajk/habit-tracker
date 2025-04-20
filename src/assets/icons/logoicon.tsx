@@ -47,8 +47,12 @@ const LogoIcon: React.FC<LogoIconProps> = ({
           y2='146.398'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='#6B73FF' />
-          <stop offset='1' stop-color='#000DFF' />
+          <stop stop-color='#ff9800' />
+          <stop
+            offset='1'
+            stop-color='#  --color-accent: #ff9800;
+'
+          />
         </linearGradient>
         <linearGradient
           id='paint1_linear_334_4043'
@@ -58,8 +62,8 @@ const LogoIcon: React.FC<LogoIconProps> = ({
           y2='146.398'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='#6B73FF' />
-          <stop offset='1' stop-color='#000DFF' />
+          <stop stop-color='#ff9800' />
+          <stop offset='1' stop-color='#ff9800' />
         </linearGradient>
         <linearGradient
           id='paint2_linear_334_4043'
@@ -69,8 +73,8 @@ const LogoIcon: React.FC<LogoIconProps> = ({
           y2='146.398'
           gradientUnits='userSpaceOnUse'
         >
-          <stop stop-color='#6B73FF' />
-          <stop offset='1' stop-color='#000DFF' />
+          <stop stop-color='#ff9800' />
+          <stop offset='1' stop-color='#ff9800' />
         </linearGradient>
       </defs>
     </svg>
