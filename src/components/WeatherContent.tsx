@@ -2,45 +2,33 @@ import React from "react";
 
 const WeatherContent: React.FC = () => {
   return (
-    <div className='p-2'>
-      <div className='flex items-center justify-between'>
-        <div className='text-4xl font-bold'>12°C</div>
-        <div className='rounded-full bg-yellow-100 p-2'>
-          <svg
-            className='w-10 h-10 text-yellow-500'
-            fill='currentColor'
-            viewBox='0 0 20 20'
-          >
-            <path d='M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z' />
-          </svg>
+    <div className='flex flex-col h-full'>
+      <div className='bg-[#FCF1BD] rounded-xl shadow p-4 h-[240px] relative overflow-hidden'>
+        <div className='w-14 h-14 rounded-xl bg-white flex items-center justify-center shadow-md'>
+          <img
+            src='src/assets/weather/setone.svg'
+            alt='Weather Icon'
+            className='w-8 h-8'
+          />
         </div>
-      </div>
 
-      <div className='grid grid-cols-3 gap-2 mt-4'>
-        <div>
-          <p className='text-sm text-gray-500'>Wind</p>
-          <p className='font-medium'>2-4 km/h</p>
+        <div className='absolute top-4 right-4 text-4xl font-bold text-gray-800'>
+          12°C
         </div>
-        <div>
-          <p className='text-sm text-gray-500'>Pressure</p>
-          <p className='font-medium'>102m</p>
+        <div className='grid grid-cols-3 gap-4 mt-4 text-center text-gray-700'>
+          <div>
+            <div className='font-bold text-lg'>2-4 km/h</div>
+            <div className='text-xs'>Wind</div>
+          </div>
+          <div>
+            <div className='font-bold text-lg'>102m</div>
+            <div className='text-xs'>Pressure</div>
+          </div>
+          <div>
+            <div className='font-bold text-lg'>42%</div>
+            <div className='text-xs'>Humidity</div>
+          </div>
         </div>
-        <div>
-          <p className='text-sm text-gray-500'>Humidity</p>
-          <p className='font-medium'>42%</p>
-        </div>
-      </div>
-
-      <div className='mt-4 flex justify-center'>
-        <img
-          src='/umbrella-illustration.png'
-          alt='Weather illustration'
-          className='h-32'
-          onError={(e) => {
-            e.currentTarget.src =
-              "https://placehold.co/200x100/FEF9C3/FACC15?text=Weather+Illustration";
-          }}
-        />
       </div>
     </div>
   );

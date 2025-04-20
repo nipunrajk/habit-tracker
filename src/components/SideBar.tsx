@@ -1,6 +1,6 @@
 function Sidebar() {
   return (
-    <div className='w-[280px] fixed top-16 left-0 h-[calc(100vh-4rem)] overflow-y-auto p-4 bg-white shadow-md z-20'>
+    <div className='w-80 fixed top-16 left-0 h-[calc(100vh-4rem)] overflow-y-auto p-4 bg-white shadow-md z-20'>
       <div className='space-y-4'>
         <h2 className='text-2xl font-bold'>Happy Tuesday 👋</h2>
         <p className='text-sm text-gray-500'>30 Dec 2023, 10:03am</p>

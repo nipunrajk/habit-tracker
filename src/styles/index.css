@@ -14,6 +14,7 @@
   --color-background: #f8f9fa;
   --color-secondary: #6c757d;
   --color-accent: #ff9800;
+  --color-weather: #efd49a;
 
   /* Typography */
   --font-heading: "Airbnb Cereal", sans-serif;
@@ -23,10 +24,13 @@
 
   /* Breakpoints */
   --breakpoint-tablet: 768px;
+
+  /* Gradient */
+  --my-gradient: 147.75deg, #e57e7e -0.02%, #ded47f 98.99%;
 }
 
 body {
-  @apply bg-gray-100 text-gray-900 font-sans;
+  /* @apply bg-gray-100 text-gray-900 font-sans; */
 }
 
 .container {
