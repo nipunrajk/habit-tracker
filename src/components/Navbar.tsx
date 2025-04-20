@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <header className='w-full h-16 flex items-center justify-between px-6 bg-white shadow-sm'>
+    <header className='fixed top-0 left-0 w-full z-30 flex items-center justify-between pl-5 pr-6 bg-white'>
       {/* Logo + Name */}
       <div className='flex items-center gap-2'>
         <Logo width={28} height={28} />

@@ -1,19 +1,28 @@
+import { SIDEBAR_WIDTH } from "../constant";
+  
 function Sidebar() {
   return (
-    <div className='w-[280px] fixed top-16 left-0 h-[calc(100vh-4rem)] overflow-y-auto p-4 bg-white shadow-md z-20'>
-      <div className='space-y-4'>
-        <h2 className='text-2xl font-bold'>Happy Tuesday 👋</h2>
-        <p className='text-sm text-gray-500'>30 Dec 2023, 10:03am</p>
+    <aside className={`w-[${SIDEBAR_WIDTH}px] fixed top-10 left-0 min-h-full overflow-y-auto p-5 bg-white z-30`}>
+      <div className='space-y-6'>
+        {/* Header */}
+        <div>
+          <h2 className='text-xl font-bold text-gray-900'>Happy Tuesday 👋</h2>
+          <p className='text-sm text-gray-500 mt-1'>30 Dec 2023, 10:03am</p>
+        </div>
 
-        <button className='bg-orange-300 text-white rounded-full py-2 px-4 w-full font-semibold hover:bg-orange-400'>
-          + New Habits
-        </button>
-        <button className='border rounded-full py-2 px-4 w-full font-medium'>
-          Browse Popular Habits
-        </button>
+        {/* Buttons */}
+        <div className='space-y-2'>
+          <button className='bg-orange-300 text-white w-full py-2 rounded-full font-semibold hover:bg-orange-400'>
+            + New Habits
+          </button>
+          <button className='border border-gray-300 w-full py-2 rounded-full font-medium'>
+            Browse Popular Habits
+          </button>
+        </div>
 
+        {/* Calendar */}
         <div className='text-center'>
-          <h3 className='text-lg font-semibold mb-2'>December, 2023</h3>
+          <h3 className='text-base font-semibold mb-3'>December, 2023</h3>
           <div className='grid grid-cols-7 gap-2 text-sm text-gray-600'>
             {[...Array(31)].map((_, i) => (
               <div
@@ -28,13 +37,14 @@ function Sidebar() {
               </div>
             ))}
           </div>
-          <p className='text-green-500 text-xs mt-2'>+3.2% from last month</p>
+          <p className='text-green-500 text-xs mt-3'>+3.2% from last month</p>
         </div>
 
+        {/* CTA Box */}
         <div className='bg-orange-50 p-4 rounded-xl text-center'>
           <img
             src='https://em-content.zobj.net/thumbs/120/apple/354/technologist_1f9d1-200d-1f4bb.png'
-            alt='Download Emoji'
+            alt='Technologist Emoji'
             className='mx-auto h-10'
           />
           <p className='font-semibold mt-2'>Sync anywhere with Hebats App</p>
@@ -46,7 +56,7 @@ function Sidebar() {
           </button>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }
 
