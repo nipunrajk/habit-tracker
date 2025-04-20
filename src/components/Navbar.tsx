@@ -1,15 +1,46 @@
+import React, { useState, useRef, useEffect } from "react";
 import Logo from "../assets/icons/logoicon";
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Avatar } from "radix-ui";
 
 const Navbar: React.FC = () => {
+  const [isSearchOpen, setSearchOpen] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSearchOpen(false);
+    };
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (inputRef.current && !inputRef.current.contains(e.target as Node)) {
+        setSearchOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleBack = () => {
     console.log("Go back");
   };
 
   const handleForward = () => {
     console.log("Go forward");
+  };
+
+  const handleToggleSearch = () => {
+    setSearchOpen((prev) => !prev);
+    setTimeout(() => {
+      inputRef.current?.focus(); // focus the input on open
+    }, 100);
   };
 
   return (
@@ -34,9 +65,23 @@ const Navbar: React.FC = () => {
           <span className='text-sm font-medium'>Dashboard</span>
           <span className='text-gray-400'>/</span>
           <span className='text-sm text-gray-500'>Schedule</span>
-          <button className='p-2 rounded-lg hover:bg-gray-100 ml-5'>
-            <Search size={18} />
-          </button>
+          <div className='relative flex items-center gap-2 ml-5'>
+            <button
+              onClick={handleToggleSearch}
+              className='p-2 rounded-lg hover:bg-gray-100 transition'
+            >
+              <Search size={18} />
+            </button>
+
+            {isSearchOpen && (
+              <input
+                ref={inputRef}
+                type='text'
+                placeholder='Search...'
+                className='transition-all w-48 px-3 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 text-sm'
+              />
+            )}
+          </div>
         </div>
       </div>
 
