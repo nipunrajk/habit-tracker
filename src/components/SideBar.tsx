@@ -1,13 +1,31 @@
 import { SIDEBAR_WIDTH } from "../constant";
-  
+import Calendar from "./Calander";
+import { useCurrentDateTime } from "../hooks/useCurrentDateTime";
 function Sidebar() {
+  const { weekday, day, month, year, time } = useCurrentDateTime();
+
   return (
-    <aside className={`w-[${SIDEBAR_WIDTH}px] fixed top-10 left-0 min-h-full overflow-y-auto p-5 bg-white z-30`}>
+    <aside
+      className={`w-[${SIDEBAR_WIDTH}px] fixed top-10 left-0 min-h-full overflow-y-auto p-5 bg-white z-30`}
+    >
       <div className='space-y-6'>
         {/* Header */}
         <div>
-          <h2 className='text-xl font-bold text-gray-900'>Happy Tuesday 👋</h2>
-          <p className='text-sm text-gray-500 mt-1'>30 Dec 2023, 10:03am</p>
+          <h2 className='text-3xl font-semibold text-gray-900'>
+            Happy <br />
+            <span className='inline-flex items-center gap-2'>
+              {weekday}
+              <img
+                src='https://fonts.gstatic.com/s/e/notoemoji/latest/1f44b/512.gif'
+                alt='👋'
+                width='32'
+                height='32'
+              />
+            </span>
+          </h2>
+          <p className='text-sm text-gray-500 mt-1'>
+            {day} {month} {year}, {time}
+          </p>
         </div>
 
         {/* Buttons */}
@@ -20,25 +38,7 @@ function Sidebar() {
           </button>
         </div>
 
-        {/* Calendar */}
-        <div className='text-center'>
-          <h3 className='text-base font-semibold mb-3'>December, 2023</h3>
-          <div className='grid grid-cols-7 gap-2 text-sm text-gray-600'>
-            {[...Array(31)].map((_, i) => (
-              <div
-                key={i}
-                className={`w-8 h-8 flex items-center justify-center rounded-full ${
-                  i === 29
-                    ? "bg-orange-300 text-white font-bold"
-                    : "bg-gray-100"
-                }`}
-              >
-                {i + 1}
-              </div>
-            ))}
-          </div>
-          <p className='text-green-500 text-xs mt-3'>+3.2% from last month</p>
-        </div>
+        <Calendar />
 
         {/* CTA Box */}
         <div className='bg-orange-50 p-4 rounded-xl text-center'>

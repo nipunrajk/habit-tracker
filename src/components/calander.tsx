@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const Calendar: React.FC = () => {
   const today = new Date();
@@ -41,21 +42,23 @@ const Calendar: React.FC = () => {
   };
 
   return (
-    <div className='text-center'>
+    <div>
       <div className='flex justify-between items-center mb-3'>
-        <button
-          onClick={goToPreviousMonth}
-          className='text-sm text-gray-500 hover:text-gray-800'
-        >
-          ‹
-        </button>
-        <h3 className='text-base font-semibold'>{`${currentMonth}, ${currentYear}`}</h3>
-        <button
-          onClick={goToNextMonth}
-          className='text-sm text-gray-500 hover:text-gray-800'
-        >
-          ›
-        </button>
+        <h3 className='text-xl font-bold'>{`${currentMonth}, ${currentYear}`}</h3>
+        <div>
+          <button
+            onClick={goToPreviousMonth}
+            className='text-gray-500 hover:text-gray-800'
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={goToNextMonth}
+            className='text-white rounded-full p-1 bg-orange-300 hover:bg-orange-400'
+          >
+            <ChevronRight size={20} />
+          </button>
+        </div>
       </div>
 
       <div className='grid grid-cols-7 gap-2 text-sm text-gray-600'>
@@ -65,8 +68,9 @@ const Calendar: React.FC = () => {
           </div>
         ))}
       </div>
-
-      <p className='text-green-500 text-xs mt-3'>+3.2% from last month</p>
+      <p className='text-gray-500  text-xs mt-3'>
+        <span className='text-green-500'>+3.2%</span> from last month
+      </p>
     </div>
   );
 };
