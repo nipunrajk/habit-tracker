@@ -1,12 +1,11 @@
-import { SIDEBAR_WIDTH } from "../constant";
-import Calendar from "./Calander";
+import Calendar from "./Calander";  
 import { useCurrentDateTime } from "../hooks/useCurrentDateTime";
 function Sidebar() {
   const { weekday, day, month, year, time } = useCurrentDateTime();
 
   return (
     <aside
-      className={`w-[${SIDEBAR_WIDTH}px] fixed top-10 left-0 min-h-full overflow-y-auto p-5 bg-white z-30`}
+      className={`w-sidebar  fixed top-10 left-0 min-h-full overflow-y-auto p-5 bg-white z-30`}
     >
       <div className='space-y-6'>
         {/* Header */}

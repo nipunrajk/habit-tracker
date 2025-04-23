@@ -20,6 +20,7 @@
 
   /* Spacing */
   --spacing-xl: 3rem;
+  --spacing-sidebar: 17.5rem;
 
   /* Breakpoints */
   --breakpoint-tablet: 768px;
