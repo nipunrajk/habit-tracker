@@ -1,4 +1,4 @@
-import Calendar from "./Calander";  
+import Calander from "./calander";
 import { useCurrentDateTime } from "../hooks/useCurrentDateTime";
 function Sidebar() {
   const { weekday, day, month, year, time } = useCurrentDateTime();
@@ -37,7 +37,7 @@ function Sidebar() {
           </button>
         </div>
 
-        <Calendar />
+        <Calander />
 
         {/* CTA Box */}
         <div className='bg-orange-50 p-4 rounded-xl text-center'>

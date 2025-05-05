@@ -1,49 +1,55 @@
 import React from "react";
 
-const WeatherContent: React.FC = () => {
+interface WeatherCardProps {
+  icon: string;
+  temperature: string;
+  location: string;
+  description: string;
+  wind: string;
+  humidity: string;
+}
+
+const WeatherCard: React.FC<WeatherCardProps> = ({
+  icon,
+  temperature,
+  location,
+  description,
+  wind,
+  humidity,
+}) => {
   return (
-    <div className='p-2'>
-      <div className='flex items-center justify-between'>
-        <div className='text-4xl font-bold'>12°C</div>
-        <div className='rounded-full bg-yellow-100 p-2'>
-          <svg
-            className='w-10 h-10 text-yellow-500'
-            fill='currentColor'
-            viewBox='0 0 20 20'
-          >
-            <path d='M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z' />
-          </svg>
-        </div>
-      </div>
-
-      <div className='grid grid-cols-3 gap-2 mt-4'>
-        <div>
-          <p className='text-sm text-gray-500'>Wind</p>
-          <p className='font-medium'>2-4 km/h</p>
-        </div>
-        <div>
-          <p className='text-sm text-gray-500'>Pressure</p>
-          <p className='font-medium'>102m</p>
-        </div>
-        <div>
-          <p className='text-sm text-gray-500'>Humidity</p>
-          <p className='font-medium'>42%</p>
-        </div>
-      </div>
-
-      <div className='mt-4 flex justify-center'>
+    <div className="bg-white rounded-2xl shadow-md p-5 w-[280px] flex flex-col justify-between">
+      {/* Top - Icon + Temp */}
+      <div className="flex items-center gap-4">
         <img
-          src='/umbrella-illustration.png'
-          alt='Weather illustration'
-          className='h-32'
-          onError={(e) => {
-            e.currentTarget.src =
-              "https://placehold.co/200x100/FEF9C3/FACC15?text=Weather+Illustration";
-          }}
+          src={icon}
+          alt="weather-icon"
+          className="w-14 h-14 rounded-full object-cover border border-gray-200"
         />
+        <div>
+          <h2 className="text-3xl font-bold text-gray-800">{temperature}</h2>
+          <p className="text-sm text-gray-500">{description}</p>
+        </div>
+      </div>
+
+      {/* Middle - Location */}
+      <div className="mt-4">
+        <p className="text-md text-gray-700 font-medium">{location}</p>
+      </div>
+
+      {/* Bottom - Details */}
+      <div className="mt-3 flex justify-between text-sm text-gray-600">
+        <div className="flex flex-col items-center">
+          <span className="font-semibold">{wind}</span>
+          <span className="text-xs">Wind</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <span className="font-semibold">{humidity}</span>
+          <span className="text-xs">Humidity</span>
+        </div>
       </div>
     </div>
   );
 };
 
-export default WeatherContent;
+export default WeatherCard;
