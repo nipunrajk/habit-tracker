@@ -1,109 +1,85 @@
-import React, { useState, useEffect } from "react";
-import { LayoutGroup } from "framer-motion";
+import React from "react";
 import DraggableCard from "../components/DraggableCard";
-import TodosContent from "../components/TodosContent";
+// import TodosContent from "../components/content/TodosContent";
+// import RunningCompetition from "../components/content/RunningCompetition";
+// import SpotifyContent from "../components/content/SpotifyContent";
+// import ShouldDoContent from "../components/content/ShouldDoContent";
 import WeatherContent from "../components/WeatherContent";
 
-interface CardPosition {
-  id: string;
-  x: number;
-  y: number;
-}
-
-interface DashboardCard {
-  id: string;
-  title: string;
-  content: React.ReactNode;
-  initialPosition?: { x: number; y: number };
-  width?: string;
-  height?: string;
-}
+// Card size categories
+const SIZE = {
+  SMALL: "w-[300px]",
+  MEDIUM: "w-[480px]",
+  FULL: "w-full",
+};
 
 const DashboardLayout: React.FC = () => {
-  // Define your dashboard cards
-  const [cards] = useState<DashboardCard[]>([
-    {
-      id: "weather",
-      title: "Weather",
-      content: <WeatherContent />, // You'll need to create this component
-      initialPosition: { x: 20, y: 20 },
-      width: "320px",
-      height: "auto",
-    },
-    {
-      id: "todos",
-      title: "Today's Todos",
-      content: <TodosContent />, // You'll need to create this component
-      initialPosition: { x: 360, y: 20 },
-      width: "320px",
-      height: "auto",
-    },
-    // Add more cards as needed
-  ]);
-
-  const [positions, setPositions] = useState<CardPosition[]>([]);
-
-  // Load saved positions from localStorage
-  useEffect(() => {
-    const savedPositions = localStorage.getItem("card-positions");
-    if (savedPositions) {
-      setPositions(JSON.parse(savedPositions));
-    }
-  }, []);
-
-  // Save positions when they change
-  useEffect(() => {
-    if (positions.length > 0) {
-      localStorage.setItem("card-positions", JSON.stringify(positions));
-    }
-  }, [positions]);
-
-  const handleDragEnd = (
-    id: string,
-    info: { point: { x: number; y: number } }
-  ) => {
-    const newPositions = [...positions];
-    const index = newPositions.findIndex((p) => p.id === id);
-
-    if (index !== -1) {
-      newPositions[index] = { id, x: info.point.x, y: info.point.y };
-    } else {
-      newPositions.push({ id, x: info.point.x, y: info.point.y });
-    }
-
-    setPositions(newPositions);
-  };
-
-  const getPosition = (id: string) => {
-    const savedPosition = positions.find((p) => p.id === id);
-    const card = cards.find((c) => c.id === id);
-
-    if (savedPosition) {
-      return { x: savedPosition.x, y: savedPosition.y };
-    }
-
-    return card?.initialPosition || { x: 0, y: 0 };
-  };
-
   return (
-    <LayoutGroup>
-      <div className='relative w-full h-[calc(100vh-64px)] overflow-auto p-4 bg-gray-100'>
-        {cards.map((card) => (
+    <div className='px-6 py-6 h-[calc(100vh-64px)] overflow-y-auto bg-gray-100'>
+      <div className='flex gap-5 max-w-[1020px] mx-auto'>
+        {/* Left Column */}
+        <div className='flex flex-col gap-5'>
+          {/* Weather Card */}
           <DraggableCard
-            key={card.id}
-            id={card.id}
-            title={card.title}
-            initialPosition={getPosition(card.id)}
-            onDragEnd={handleDragEnd}
-            className={`${card.width ? `w-[${card.width}]` : "w-[320px]"} ${
-              card.height ? `h-[${card.height}]` : ""
-            }`}
+            id='weather'
+            title='Weather'
+            className={`${SIZE.SMALL} h-[240px]`}
           >
-            {card.content}
+            <WeatherContent />
           </DraggableCard>
-        ))}
+
+          {/* More Integrations Card */}
+          <DraggableCard
+            id='integrations'
+            title='More Integrations'
+            className={`${SIZE.SMALL} h-[140px]`}
+          >
+            <div className='bg-red-200 p-5 h-full flex items-center justify-center'>
+              <span className='text-center'>23+ apps</span>
+            </div>
+          </DraggableCard>
+        </div>
+
+        {/* Right Column */}
+        <div className='flex flex-col gap-5'>
+          {/* Today's Todos Card */}
+          {/* <DraggableCard
+            id='todos'
+            title="Today's Todos"
+            className={`${SIZE.MEDIUM}`}
+          >
+            <TodosContent />
+          </DraggableCard> */}
+
+          {/* Spotify Card */}
+          {/* <DraggableCard
+            id='spotify'
+            title='Spotify'
+            className={`${SIZE.MEDIUM} h-[180px]`}
+          >
+            <SpotifyContent />
+          </DraggableCard> */}
+
+          {/* Should Do Card */}
+          {/* <DraggableCard
+            id='should-do'
+            title='Should Do'
+            className={`${SIZE.MEDIUM} h-[160px]`}
+          >
+            <ShouldDoContent />
+          </DraggableCard> */}
+
+          {/* Running Competition Card */}
+          {/* <DraggableCard
+            id='running-competition'
+            title='Running Competition'
+            className={`${SIZE.MEDIUM} h-[280px]`}
+          >
+            <RunningCompetition />
+          </DraggableCard> */}
+        </div>
       </div>
-    </LayoutGroup>
+    </div>
   );
 };
 
