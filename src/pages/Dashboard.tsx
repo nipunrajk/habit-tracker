@@ -1,83 +1,73 @@
 import React from "react";
-import DraggableCard from "../components/DraggableCard";
+import DraggableCard from "../components/cards/DraggableCard";
+import CardWrapper from "../components/cards/CardWrapper";
+import WeatherCard from "../components/content/WeatherCard";
 // import TodosContent from "../components/content/TodosContent";
-// import RunningCompetition from "../components/content/RunningCompetition";
 // import SpotifyContent from "../components/content/SpotifyContent";
 // import ShouldDoContent from "../components/content/ShouldDoContent";
-import WeatherContent from "../components/WeatherContent";
-
-// Card size categories
-const SIZE = {
-  SMALL: "w-[300px]",
-  MEDIUM: "w-[480px]",
-  FULL: "w-full",
-};
+// import RunningCompetitionCard from "../components/content/RunningCompetitionCard";
 
 const DashboardLayout: React.FC = () => {
   return (
-    <div className='px-6 py-6 h-[calc(100vh-64px)] overflow-y-auto bg-gray-100'>
-      <div className='flex gap-5 max-w-[1020px] mx-auto'>
-        {/* Left Column */}
-        <div className='flex flex-col gap-5'>
-          {/* Weather Card */}
-          <DraggableCard
-            id='weather'
-            title='Weather'
-            className={`${SIZE.SMALL} h-[240px]`}
-          >
-            <WeatherContent />
-          </DraggableCard>
+    <div className=" h-[calc(100vh-64px)] overflow-y-auto">
+      {/* Four-column grid: fixed 3 columns + filler */}
+      <div className="grid grid-cols-[300px_480px_300px_1fr] gap-6">
+        {/* ─── Left Column ─── */}
+        <div className="flex flex-col gap-6">
+          <CardWrapper title="Weather">
+            <DraggableCard id="weather" className="w-full h-[240px]">
+              <WeatherCard
+                icon="/icons/sunny.svg"
+                temperature="21°C"
+                description="Sunny"
+                location="San Francisco"
+                wind="10 km/h"
+                humidity="68%"
+              />
+            </DraggableCard>
+          </CardWrapper>
 
-          {/* More Integrations Card */}
-          <DraggableCard
-            id='integrations'
-            title='More Integrations'
-            className={`${SIZE.SMALL} h-[140px]`}
-          >
-            <div className='bg-red-200 p-5 h-full flex items-center justify-center'>
-              <span className='text-center'>23+ apps</span>
-            </div>
-          </DraggableCard>
+          <CardWrapper title="More Integrations">
+            <DraggableCard id="integrations" className="w-full h-[140px]">
+              <div className="h-full flex items-center justify-center bg-red-200 rounded-xl">
+                <span className="font-medium">23+ apps</span>
+              </div>
+            </DraggableCard>
+          </CardWrapper>
         </div>
 
-        {/* Right Column */}
-        <div className='flex flex-col gap-5'>
-          {/* Today's Todos Card */}
-          {/* <DraggableCard
-            id='todos'
-            title="Today's Todos"
-            className={`${SIZE.MEDIUM}`}
-          >
-            <TodosContent />
-          </DraggableCard> */}
-
-          {/* Spotify Card */}
-          {/* <DraggableCard
-            id='spotify'
-            title='Spotify'
-            className={`${SIZE.MEDIUM} h-[180px]`}
-          >
-            <SpotifyContent />
-          </DraggableCard> */}
-
-          {/* Should Do Card */}
-          {/* <DraggableCard
-            id='should-do'
-            title='Should Do'
-            className={`${SIZE.MEDIUM} h-[160px]`}
-          >
-            <ShouldDoContent />
-          </DraggableCard> */}
-
-          {/* Running Competition Card */}
-          {/* <DraggableCard
-            id='running-competition'
-            title='Running Competition'
-            className={`${SIZE.MEDIUM} h-[280px]`}
-          >
-            <RunningCompetition />
-          </DraggableCard> */}
+        {/* ─── Middle Column ─── */}
+        <div className="flex flex-col gap-6">
+          <CardWrapper title="Today's Todos">
+            <DraggableCard id="todos" className="w-full h-[240px]">
+              {/* <TodosContent /> */}
+            </DraggableCard>
+          </CardWrapper>
         </div>
+
+        {/* ─── Right Column ─── */}
+        <div className="flex flex-col gap-6">
+          <CardWrapper title="Spotify">
+            <DraggableCard id="spotify" className="w-full h-[180px]">
+              {/* <SpotifyContent /> */}
+            </DraggableCard>
+          </CardWrapper>
+
+          <CardWrapper title="Should Do">
+            <DraggableCard id="should-do" className="w-full h-[160px]">
+              {/* <ShouldDoContent /> */}
+            </DraggableCard>
+          </CardWrapper>
+
+          <CardWrapper title="Running Competition">
+            <DraggableCard id="running" className="w-full h-[240px]">
+              {/* <RunningCompetitionCard /> */}
+            </DraggableCard>
+          </CardWrapper>
+        </div>
+
+        {/* ─── Filler Column ─── */}
+        <div />
       </div>
     </div>
   );
