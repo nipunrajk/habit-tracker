@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-const DraggableCard = ({ children }: { children: React.ReactNode }) => {
+interface DraggableCardProps {
+  children: React.ReactNode;
+  id?: string;
+  className?: string;
+}
+
+const DraggableCard: React.FC<DraggableCardProps> = ({
+  children,
+  id,
+  className = "",
+}) => {
   const [isDragging, setIsDragging] = useState(false);
   const [resetKey, setResetKey] = useState(0);
 
   return (
-    <div className="relative">
+    <div className={`relative ${className}`} id={id}>
       {isDragging && (
         <div
           className="absolute bg-gray-100 inset-0 border-4 border-dotted border-gray-400 rounded-md pointer-events-none z-0"

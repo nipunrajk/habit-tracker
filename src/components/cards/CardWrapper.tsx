@@ -14,7 +14,9 @@ const CardWrapper: React.FC<CardWrapperProps> = ({
   className,
 }) => {
   return (
-    <div className={`bg-white rounded-xl shadow p-4 ${className}`}>
+    <div
+      className={`bg-white rounded-xl border border-gray-200 p-4 ${className}`}
+    >
       {/* Card Header - Always has consistent padding */}
       {showHeader && (
         <div className="flex justify-between items-center mb-3">
