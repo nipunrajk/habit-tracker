@@ -5,6 +5,7 @@ import WeatherCard from "../components/content/WeatherCard";
 import ShouldDoCard from "../components/cards/ShouldDoCard";
 import DistanceTrackerCard from "../components/cards/DistanceTrackerCard";
 import TodosContent from "../components/content/TodosCard";
+import AnalyticsSection from "../components/cards/AnalyticsSection";
 // import TodosContent from "../components/content/TodosContent";
 // import SpotifyContent from "../components/content/SpotifyContent";
 // import ShouldDoContent from "../components/content/ShouldDoContent";
@@ -12,10 +13,10 @@ import TodosContent from "../components/content/TodosCard";
 const DashboardLayout: React.FC = () => {
   return (
     <div className="h-[calc(100vh-64px)] overflow-y-auto">
-      {/* Three-column grid with max-width constraint */}
-      <div className="max-w-[1400px] mx-auto grid grid-cols-[1fr_1.6fr_1fr]">
+      {/* Two-row grid: main cards and analytics */}
+      <div className="max-w-[1400px] mx-auto grid grid-cols-[1fr_1.6fr_1fr] grid-rows-[auto_1fr] gap-y-0">
         {/* ─── Left Column ─── */}
-        <div className="flex flex-col">
+        <div className="flex flex-col row-span-2 row-start-1">
           <CardWrapper title="Weather" className="w-full">
             <DraggableCard id="weather" className="w-full h-[240px]">
               <WeatherCard
@@ -53,7 +54,7 @@ const DashboardLayout: React.FC = () => {
         </div>
 
         {/* ─── Middle Column ─── */}
-        <div className="flex flex-col">
+        <div className="flex flex-col row-start-1 col-start-2">
           <CardWrapper title="Today's Todos" className="w-full">
             <DraggableCard id="todos" className="w-full">
               <TodosContent />
@@ -62,7 +63,7 @@ const DashboardLayout: React.FC = () => {
         </div>
 
         {/* ─── Right Column ─── */}
-        <div className="flex flex-col">
+        <div className="flex flex-col row-start-1 col-start-3">
           <CardWrapper title="Spotify" className="w-full">
             <DraggableCard id="spotify" className="w-full h-[180px]">
               <div className="h-full flex items-center justify-center bg-gray-50 rounded-xl">
@@ -78,6 +79,11 @@ const DashboardLayout: React.FC = () => {
               </div>
             </DraggableCard>
           </CardWrapper>
+        </div>
+
+        {/* ─── Analytics Section spanning middle and right columns in row 2 ─── */}
+        <div className="col-start-2 col-span-2 row-start-2">
+          <AnalyticsSection />
         </div>
       </div>
     </div>
